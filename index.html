@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>駄菓子屋 te to te｜大津市雄琴</title>
 <meta name="description" content="滋賀県大津市雄琴の駄菓子屋 te to te。子どもたちが安心してホッとできる、人と人との温もりがつながる場所。2026年7月22日OPEN。">
+<meta property="og:title" content="駄菓子屋 te to te｜大津市雄琴">
+<meta property="og:description" content="滋賀県大津市雄琴の駄菓子屋 te to te。子どもたちが安心してホッとできる、人と人との温もりがつながる場所。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tkstkm7.github.io/tetote/">
+<meta property="og:image" content="https://tkstkm7.github.io/tetote/schedule-month.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Yusei+Magic&display=swap" rel="stylesheet">
@@ -175,8 +181,8 @@
       </div>
       <div class="tag">手から手へ、人の温もりを未来へ。</div>
       <div class="open">
-        <span class="d" style="font-size:22px;">営業中 <small style="font-size:15px; letter-spacing:.12em;">OPEN</small></span>
-        <span class="t">2026.7.22 オープン ｜ 10:30 〜</span>
+        <span class="d" id="open-status" style="font-size:22px;">営業日はカレンダーをご確認ください</span>
+        <span class="t">月・水・金 10:30〜16:30 ｜ 火・木 13:30〜16:30 ｜ 土・日 お休み</span>
       </div>
     </div>
     <div class="scroll-cue">SCROLL<span></span></div>
@@ -294,8 +300,8 @@
   <section class="info" id="info">
     <h2>店舗情報</h2><span class="h2-en">INFORMATION</span>
     <div class="info-card">
-      <div class="info-row"><div class="ik">🏠</div><div class="iv">滋賀県大津市雄琴1-15-12<br><small>ファミマ おごと温泉店のすぐ東／美容室バフォの北どなり</small></div></div>
-      <div class="info-row"><div class="ik">🕐</div><div class="iv">10:30 〜<br><small>営業日・時間は変則的になることがあります。Instagramで随時お知らせします</small></div></div>
+      <div class="info-row"><div class="ik">🏠</div><div class="iv"><a href="https://www.google.com/maps/search/?api=1&query=%E6%BB%8B%E8%B3%80%E7%9C%8C%E5%A4%A7%E6%B4%A5%E5%B8%82%E9%9B%84%E7%90%B41-15-12" target="_blank" rel="noopener" style="color:var(--terra); font-weight:700; text-decoration:underline;">滋賀県大津市雄琴1-15-12</a><br><small>ファミマ おごと温泉店のすぐ東／美容室バフォの北どなり（住所タップでGoogleマップが開きます）</small></div></div>
+      <div class="info-row"><div class="ik">🕐</div><div class="iv">月・水・金 10:30〜16:30<br>火・木 13:30〜16:30<br><small>土・日はお休みです。子どもの行事などで、営業時間が変更になる場合があります。ご来店前にInstagramか、このページのカレンダーで随時ご確認ください</small></div></div>
       <div class="info-row"><div class="ik">🎫</div><div class="iv">ハピネスチケット導入店<br><small>100円分でお菓子が選べるチケット</small></div></div>
       <div class="info-row"><div class="ik">✉️</div><div class="iv">お問い合わせ<br><small>InstagramのDMよりお願いします</small></div></div>
     </div>
@@ -312,5 +318,22 @@
   </footer>
 
 </div>
+<script>
+(function(){
+  var el=document.getElementById('open-status');
+  if(!el){return;}
+  var H={1:[630,990],2:[810,990],3:[630,990],4:[810,990],5:[630,990]};
+  function fmt(m){return Math.floor(m/60)+':'+('0'+(m%60)).slice(-2);}
+  function upd(){
+    var n=new Date(), h=H[n.getDay()], t=n.getHours()*60+n.getMinutes(), s;
+    if(!h){s='本日はお休みです';}
+    else if(t<h[0]){s='本日 '+fmt(h[0])+' から営業します';}
+    else if(t<h[1]){s='営業中 OPEN（〜'+fmt(h[1])+'）';}
+    else{s='本日の営業は終了しました';}
+    el.textContent=s;
+  }
+  upd(); setInterval(upd,60000);
+})();
+</script>
 </body>
 </html>
